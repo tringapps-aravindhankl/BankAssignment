@@ -1,50 +1,53 @@
 package bank;
 import java.util.*;
+import java.util.logging.*;
 class Welcome {
-    public String Holdername;
-    public int accountNum;
+    public String holdername;
+    public int accountnum;
     private double balance = 0;
     Scanner a = new Scanner(System.in);
+    Logger log=Logger.getLogger("hi");
 
     Welcome() {
-        System.out.println("ENTER ACCOUNT HOLDERNAME");
+        log.info("ENTER ACCOUNT HOLDERNAME");
         String name = a.nextLine();
-        this.Holdername = name;
-        System.out.println("ENTER YOUR ACCOUNTNUMBER");
+        holdername = name;
+        log.info("ENTER YOUR ACCOUNTNUMBER");
         int number = a.nextInt();
-        this.accountNum = number;
+        accountnum = number;
     }
 
     void deposite() {
-        System.out.println("enter your deposite amount");
+        log.info("enter your deposite amount");
         double deposite = a.nextDouble();
         balance = balance + deposite;
     }
 
     void withdraw() {
-        System.out.println("enter withdraw amount");
+        log.info("enter withdraw amount");
         double withdraw = a.nextDouble();
         if (withdraw < balance) {
             balance = balance - withdraw;
         } else {
-            System.out.println("your balance is low");
+            log.info("your balance is low");
         }
     }
 
     void balance() {
-        System.out.println("your balance is" + balance);
+        log.info("your balance is" + balance);
     }
 }
-public class App {
+public class Bank {
 	public static void main(String[] args) {
 		int option;
         Welcome hi = new Welcome();
+	Logger log=Logger.getLogger("hi");
         Scanner b = new Scanner(System.in);
         do {
-            System.out.println("1.Deposite");
-            System.out.println("2.withdraw");
-            System.out.println("3.balance");
-            System.out.println("4.Exit");
+            log.info("1.Deposite");
+            log.info("2.withdraw");
+            log.info("3.balance");
+            log.info("4.Exit");
             option = b.nextInt();
             switch (option) {
                 case 1:
@@ -57,7 +60,8 @@ public class App {
                     hi.balance();
                     break;
                 case 4:
-                    System.out.println("Enter valid option");
+                    log.info("Enter valid option");
+	            break;
             }
         } while (option < 4);
 

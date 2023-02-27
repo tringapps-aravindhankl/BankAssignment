@@ -1,70 +1,46 @@
 package bank;
 import java.util.*;
 import java.util.logging.*;
-class Welcome {
-    public String holdername;
-    public int accountnum;
-    private double balance = 0;
-    Scanner a = new Scanner(System.in);
-    Logger log=Logger.getLogger("hi");
 
-    Welcome() {
-        log.info("ENTER ACCOUNT HOLDERNAME");
-        String name = a.nextLine();
-        holdername = name;
-        log.info("ENTER YOUR ACCOUNTNUMBER");
-        int number = a.nextInt();
-        accountnum = number;
-    }
-
-    void deposite() {
-        log.info("enter your deposite amount");
-        double deposite = a.nextDouble();
-        balance = balance + deposite;
-    }
-
-    void withdraw() {
-        log.info("enter withdraw amount");
-        double withdraw = a.nextDouble();
-        if (withdraw < balance) {
-            balance = balance - withdraw;
-        } else {
-            log.info("your balance is low");
-        }
-    }
-
-    void balance() {
-        log.info("your balance is" + balance);
-    }
-}
 public class Bank {
-	public static void main(String[] args) {
-		int option;
-        Welcome hi = new Welcome();
-	Logger log=Logger.getLogger("hi");
-        Scanner b = new Scanner(System.in);
+    public static void main(String[] args) {
+        int option = 0;
+        Logger log = Logger.getLogger("hi");
+        Scanner scan = new Scanner(System.in);
+        log.info("ENTER ACCOUNT HOLDERNAME");
+        String name = scan.nextLine();
+        log.info("ENTER YOUR ACCOUNTNUMBER");
+        int number = scan.nextInt();
+        Details obj = new Details(name,number);
         do {
             log.info("1.Deposite");
             log.info("2.withdraw");
             log.info("3.balance");
             log.info("4.Exit");
-            option = b.nextInt();
+            try {
+            option=scan.nextInt();
+            }
+            catch(InputMismatchException e) {
+            	log.info(String.valueOf(e));
+            	System.exit(0);
+            }
             switch (option) {
                 case 1:
-                    hi.deposite();
+                    obj.deposite();
                     break;
                 case 2:
-                    hi.withdraw();
+                    obj.withdraw();
                     break;
                 case 3:
-                    hi.balance();
+                    obj.balance();
                     break;
                 case 4:
-                    log.info("Enter valid option");
-	            break;
+                    log.info("Thank You:)");
+                    break;
+                default:
             }
         } while (option < 4);
 
-	}
+    }
 
 }

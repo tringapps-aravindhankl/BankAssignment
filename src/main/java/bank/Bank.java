@@ -22,7 +22,6 @@ public class Bank {
             }
             catch(InputMismatchException e) {
             	log.info(String.valueOf(e));
-            	System.exit(0);
             }
             switch (option) {
                 case 1:
